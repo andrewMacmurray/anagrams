@@ -17,4 +17,19 @@ public class DictionaryTest {
 
         assertArrayEquals(expectedDictionary, dictionary.getWords());
     }
+
+    @Test
+    public void returnOtherWords() {
+        Dictionary dictionary = new Dictionary("src/test/java/DUMMY_DICT_2.txt");
+        String[] expectedDictionary = new String[]{
+                "blah",
+                "car",
+                "tin",
+                "bin",
+                "mum",
+                "anagram"
+        };
+
+        assertArrayEquals(expectedDictionary, dictionary.getWords());
+    }
 }
