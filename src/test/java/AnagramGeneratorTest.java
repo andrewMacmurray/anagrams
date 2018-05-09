@@ -26,7 +26,16 @@ public class AnagramGeneratorTest {
 
     @Test
     public void testArt() {
+        assertAnagram("art","rat","tar", "art");
+    }
+
+    @Test
+    public void testRat() {
         assertAnagram("rat","rat","tar", "art");
     }
 
+    @Test
+    public void testTar() {
+        assertAnagram("tar","rat","tar", "art");
+    }
 }
