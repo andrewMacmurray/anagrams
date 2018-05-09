@@ -11,7 +11,9 @@ public class AnagramGeneratorTest {
     private void assertAnagram(String input, String... dictionaryWords) {
         List<String> expectedWords = new ArrayList<>();
         expectedWords.addAll(Arrays.asList(dictionaryWords));
-        assertEquals(AnagramGenerator.generate(input), expectedWords);
+
+        AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict());
+        assertEquals(anagramGenerator.generate(input), expectedWords);
     }
 
     @Test
@@ -37,5 +39,19 @@ public class AnagramGeneratorTest {
     @Test
     public void testTar() {
         assertAnagram("tar","rat","tar", "art");
+    }
+}
+
+
+class MockDict implements IDicitonary {
+
+    public String[] getWords() {
+        return new String[] {
+           "on",
+           "no",
+           "rat",
+           "tar",
+           "art"
+        };
     }
 }
