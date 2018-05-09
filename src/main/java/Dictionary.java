@@ -1,22 +1,19 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class Dictionary {
 
-    private String fileName;
+    private String filePath;
 
     public Dictionary(String filePath) {
-        this.fileName = filePath;
+        this.filePath = filePath;
     }
 
     public String[] getWords() {
-        String line = null;
         try {
-            Path filePath = new File(fileName).toPath();
-            return Files.readAllLines(filePath).toArray(new String[0]);
-
+            Path path = new File(this.filePath).toPath();
+            return Files.readAllLines(path).toArray(new String[0]);
         } catch (FileNotFoundException err) {
             System.out.println("unable to find file");
             return new String[]{};
