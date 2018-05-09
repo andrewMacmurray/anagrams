@@ -21,10 +21,12 @@ public class AnagramGenerator {
     }
 
     private boolean containsAllLetters(String input, String dictionaryWord) {
+        String checkedCharacters = "";
         for (String character : splitWord(dictionaryWord)) {
-            if (!input.contains(character)) {
+            if (!input.contains(character) || checkedCharacters.contains(character)) {
                 return false;
             }
+            checkedCharacters += character;
         }
         return true;
     }

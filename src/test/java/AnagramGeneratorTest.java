@@ -23,22 +23,42 @@ public class AnagramGeneratorTest {
 
     @Test
     public void testOn() {
-        assertAnagram("on", "on","no");
+        assertAnagram("on", "on", "no");
     }
 
     @Test
     public void testArt() {
-        assertAnagram("art","rat","tar", "art");
+        assertAnagram("art", "rat", "tar", "art");
     }
 
     @Test
     public void testRat() {
-        assertAnagram("rat","rat","tar", "art");
+        assertAnagram("rat", "rat", "tar", "art");
     }
 
     @Test
     public void testTar() {
-        assertAnagram("tar","rat","tar", "art");
+        assertAnagram("tar", "rat", "tar", "art");
+    }
+
+    @Test
+    public void testSingleUseOfChars() {
+        List<String> expectedWords = new ArrayList<>();
+        expectedWords.addAll(Arrays.asList("rat", "tar", "art"));
+        AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict2());
+        assertEquals(expectedWords, anagramGenerator.generate("tar"));
     }
 }
 
+class MockDict2 implements IDicitonary {
+    public String[] getWords() {
+        return new String[]{
+                "rat",
+                "tar",
+                "art",
+                "atar",
+                "ratatat",
+                "tart"
+        };
+    }
+}
