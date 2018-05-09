@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 version '1.0-SNAPSHOT'
@@ -10,6 +11,12 @@ repositories {
     mavenCentral()
 }
 
+mainClassName = 'anagram.Main'
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+run {
+    standardInput = System.in
 }

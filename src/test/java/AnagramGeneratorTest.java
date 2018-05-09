@@ -1,3 +1,5 @@
+import anagram.AnagramGenerator;
+import anagram.IDicitonary;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -47,6 +49,14 @@ public class AnagramGeneratorTest {
         expectedWords.addAll(Arrays.asList("rat", "tar", "art"));
         AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict2());
         assertEquals(expectedWords, anagramGenerator.generate("tar"));
+    }
+
+    @Test
+    public void testDoubleChars() {
+        List<String> expectedWords = new ArrayList<>();
+        expectedWords.addAll(Arrays.asList("rat", "tar", "art", "tart"));
+        AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict2());
+        assertEquals(expectedWords, anagramGenerator.generate("tart"));
     }
 }
 

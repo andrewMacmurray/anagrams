@@ -1,3 +1,5 @@
+import anagram.AnagramGenerator;
+import anagram.Cli;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

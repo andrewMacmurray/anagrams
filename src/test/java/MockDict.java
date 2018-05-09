@@ -1,3 +1,5 @@
+import anagram.IDicitonary;
+
 public class MockDict implements IDicitonary {
 
     public String[] getWords() {
