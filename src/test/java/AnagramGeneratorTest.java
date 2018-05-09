@@ -6,6 +6,11 @@ public class AnagramGeneratorTest {
 
     @Test
     public void testNo() {
-        assertEquals("on", AnagramGenerator.generate("no"));
+        assertEquals("onno", AnagramGenerator.generate("no"));
+    }
+
+  @Test
+    public void testArt() {
+        assertEquals("RatTar", AnagramGenerator.generate("Art"));
     }
 }
