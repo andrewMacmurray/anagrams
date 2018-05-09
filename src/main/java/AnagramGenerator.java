@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -11,11 +12,11 @@ public class AnagramGenerator {
             "no"
     };
 
-    public static String generate(String input) {
-        String result = "";
+    public static ArrayList<String> generate(String input) {
+        ArrayList<String> result = new ArrayList<>();
         for (String dictionaryWord : dictionary) {
            if (containsAllLetters(input, dictionaryWord)) {
-              result += dictionaryWord;
+              result.add(dictionaryWord);
            }
         }
 
