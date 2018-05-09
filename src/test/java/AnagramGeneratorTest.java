@@ -2,6 +2,7 @@ import anagram.AnagramGenerator;
 import anagram.IDicitonary;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,28 +48,55 @@ public class AnagramGeneratorTest {
     public void testSingleUseOfChars() {
         List<String> expectedWords = new ArrayList<>();
         expectedWords.addAll(Arrays.asList("rat", "tar", "art"));
-        AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict2());
+        AnagramGenerator anagramGenerator = new AnagramGenerator(
+                new MockDict2(Arrays.asList("rat",
+                        "tar",
+                        "art",
+                        "atar",
+                        "ratatat",
+                        "tart"))
+        );
         assertEquals(expectedWords, anagramGenerator.generate("tar"));
     }
 
+
     @Test
-    public void testDoubleChars() {
+    public void upperCaseChars() {
         List<String> expectedWords = new ArrayList<>();
-        expectedWords.addAll(Arrays.asList("rat", "tar", "art", "tart"));
-        AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict2());
+        expectedWords.addAll(Arrays.asList("Rat", "Tar", "art"));
+        AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict2(Arrays.asList(
+                "Rat",
+                "Tar",
+                "art",
+                "ratatat"
+        )));
+        assertEquals(expectedWords, anagramGenerator.generate("TAR"));
+    }
+
+    @Test
+    public void checkMultipleChars() {
+        List<String> expectedWords = new ArrayList<>();
+        expectedWords.addAll(Arrays.asList("tar", "art", "tart"));
+        AnagramGenerator anagramGenerator = new AnagramGenerator(new MockDict2(Arrays.asList(
+            "tar",
+            "art",
+            "tart",
+            "ratatat"
+        )));
         assertEquals(expectedWords, anagramGenerator.generate("tart"));
     }
 }
 
 class MockDict2 implements IDicitonary {
-    public String[] getWords() {
-        return new String[]{
-                "rat",
-                "tar",
-                "art",
-                "atar",
-                "ratatat",
-                "tart"
-        };
+
+    private String[] words;
+
+    public MockDict2(List<String> words) {
+        this.words = words.toArray(new String[0]);
     }
+
+    public String[] getWords() {
+        return words;
+    }
+
 }

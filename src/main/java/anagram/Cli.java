@@ -27,7 +27,7 @@ public class Cli {
 
     public String takeInput() {
         String input = scanner.next();
-        this.userInput = input.toLowerCase();
+        this.userInput = input;
         return input;
     }
 

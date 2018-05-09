@@ -1,8 +1,6 @@
 package anagram;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 public class AnagramGenerator {
 
@@ -15,25 +13,38 @@ public class AnagramGenerator {
     public ArrayList<String> generate(String input) {
         ArrayList<String> result = new ArrayList<>();
         for (String dictionaryWord : dictionary) {
-           if (containsAllLetters(input, dictionaryWord)) {
-              result.add(dictionaryWord);
-           }
+            if (containsAllLetters(input, dictionaryWord)) {
+                result.add(dictionaryWord);
+            }
         }
         return result;
     }
 
     private boolean containsAllLetters(String input, String dictionaryWord) {
-        String checkedCharacters = "";
-        for (String character : splitWord(dictionaryWord)) {
-            if (!input.contains(character) || checkedCharacters.contains(character)) {
+        Map<String, Integer> inputWordMap = wordCountMap(input.toLowerCase());
+
+        for (String character : splitWord(dictionaryWord.toLowerCase())) {
+            if (!inputWordMap.containsKey(character) || inputWordMap.get(character) == 0) {
                 return false;
             }
-            checkedCharacters += character;
+            inputWordMap.put(character, inputWordMap.get(character) - 1);
         }
         return true;
     }
 
+    private Map<String, Integer> wordCountMap(String input) {
+        Map<String, Integer> wordMap = new HashMap<>();
+        for (String inputCharacter : splitWord(input)) {
+            if (wordMap.containsKey(inputCharacter)) {
+                wordMap.put(inputCharacter, wordMap.get(inputCharacter) + 1);
+            } else {
+                wordMap.put(inputCharacter, 1);
+            }
+        }
+        return wordMap;
+    }
+
     private String[] splitWord(String word) {
-       return word.split("");
+        return word.split("");
     }
 }
