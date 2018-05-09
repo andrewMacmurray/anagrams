@@ -9,8 +9,13 @@ public class AnagramGeneratorTest {
         assertEquals("onno", AnagramGenerator.generate("no"));
     }
 
-  @Test
+    @Test
+    public void testOn() {
+        assertEquals("onno", AnagramGenerator.generate("on"));
+    }
+
+    @Test
     public void testArt() {
-        assertEquals("RatTar", AnagramGenerator.generate("Art"));
+        assertEquals("rattarart", AnagramGenerator.generate("art"));
     }
 }
