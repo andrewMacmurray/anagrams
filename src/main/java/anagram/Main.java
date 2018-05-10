@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary("words.txt");
-        AnagramGenerator anagramGenerator = new AnagramGenerator(dictionary);
+        AnagramGenerator anagramGenerator = new AnagramGenerator(dictionary.getWords());
 
         Cli cli = new Cli(System.in, System.out, anagramGenerator);
         cli.greetUser();

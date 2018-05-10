@@ -4,15 +4,15 @@ import java.util.*;
 
 public class AnagramGenerator {
 
-    private final String[] dictionary;
+    private final String[] dictionaryWords;
 
-    public AnagramGenerator(IDicitonary dictionary) {
-        this.dictionary = dictionary.getWords();
+    public AnagramGenerator(String[] dictionaryWords) {
+        this.dictionaryWords = dictionaryWords;
     }
 
     public ArrayList<String> generate(String input) {
         ArrayList<String> result = new ArrayList<>();
-        for (String dictionaryWord : dictionary) {
+        for (String dictionaryWord : dictionaryWords) {
             if (containsAllLetters(input, dictionaryWord)) {
                 result.add(dictionaryWord);
             }

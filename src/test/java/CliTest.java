@@ -35,7 +35,7 @@ public class CliTest {
     }
 
     private AnagramGenerator mockAnagramGenerator() {
-        return new AnagramGenerator(new MockDict());
+        return new AnagramGenerator(new MockDict().getWords());
     }
 }
 
