@@ -1,6 +1,7 @@
 package anagram;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AnagramGenerator {
 
@@ -10,14 +11,11 @@ public class AnagramGenerator {
         this.dictionaryWords = dictionaryWords;
     }
 
-    public ArrayList<String> generate(String input) {
-        ArrayList<String> result = new ArrayList<>();
-        for (String dictionaryWord : dictionaryWords) {
-            if (containsAllLetters(input, dictionaryWord)) {
-                result.add(dictionaryWord);
-            }
-        }
-        return result;
+    public List<String> generate(String input) {
+        return Arrays.asList(dictionaryWords)
+                .stream()
+                .filter(word -> containsAllLetters(input, word))
+                .collect(Collectors.toList());
     }
 
     private boolean containsAllLetters(String input, String dictionaryWord) {
