@@ -14,15 +14,22 @@ public class Dictionary {
 
     public String[] getWords() {
         try {
-            Path path = new File(this.filePath).toPath();
-            return Files.readAllLines(path).toArray(new String[0]);
+            return readWords();
         } catch (FileNotFoundException err) {
-            System.out.println("unable to find file");
-            return new String[]{};
-        }  catch (IOException e) {
-            System.out.println("error reading file");
-            return new String[]{};
+            return badResult("unable to find file");
+        } catch (IOException e) {
+            return badResult("error reading file");
         }
     }
-    
+
+    private String[] readWords() throws IOException {
+        Path path = new File(this.filePath).toPath();
+        return Files.readAllLines(path).toArray(new String[0]);
+    }
+
+    private String[] badResult(String errorMessage) {
+        System.out.println(errorMessage);
+        return new String[]{};
+    }
+
 }

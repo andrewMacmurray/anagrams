@@ -22,24 +22,31 @@ public class AnagramGenerator {
         Map<String, Integer> inputWordMap = wordCountMap(input.toLowerCase());
 
         for (String character : splitWord(dictionaryWord.toLowerCase())) {
-            if (!inputWordMap.containsKey(character) || inputWordMap.get(character) == 0) {
-                return false;
-            }
-            inputWordMap.put(character, inputWordMap.get(character) - 1);
+            if (!isCharacterPresent(inputWordMap, character)) return false;
+            decrementMap(inputWordMap, character);
         }
         return true;
+    }
+
+    private boolean isCharacterPresent(Map<String, Integer> map, String character) {
+        return map.containsKey(character) && map.get(character) > 0;
     }
 
     private Map<String, Integer> wordCountMap(String input) {
         Map<String, Integer> wordMap = new HashMap<>();
         for (String inputCharacter : splitWord(input)) {
-            if (wordMap.containsKey(inputCharacter)) {
-                wordMap.put(inputCharacter, wordMap.get(inputCharacter) + 1);
-            } else {
-                wordMap.put(inputCharacter, 1);
-            }
+            incrementMap(wordMap, inputCharacter);
         }
         return wordMap;
+    }
+
+    private void incrementMap(Map<String, Integer> map, String character) {
+        map.computeIfPresent(character, (k, v) -> v + 1);
+        map.computeIfAbsent(character, k -> 1);
+    }
+
+    private void decrementMap(Map<String, Integer> map, String character) {
+        map.computeIfPresent(character, (k, v) -> v - 1);
     }
 
     private String[] splitWord(String word) {
