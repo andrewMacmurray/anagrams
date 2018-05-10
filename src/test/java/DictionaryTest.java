@@ -7,7 +7,7 @@ public class DictionaryTest {
 
     @Test
     public void returnWords() {
-        Dictionary dictionary = new Dictionary("src/test/java/DUMMY_DICT.txt");
+        Dictionary dictionary = new Dictionary("src/test/resources/DUMMY_DICT.txt");
         String[] expectedDictionary = new String[]{
                 "rat",
                 "tar",
@@ -21,7 +21,7 @@ public class DictionaryTest {
 
     @Test
     public void returnOtherWords() {
-        Dictionary dictionary = new Dictionary("src/test/java/DUMMY_DICT_2.txt");
+        Dictionary dictionary = new Dictionary("src/test/resources/DUMMY_DICT_2.txt");
         String[] expectedDictionary = new String[]{
                 "blah",
                 "car",
