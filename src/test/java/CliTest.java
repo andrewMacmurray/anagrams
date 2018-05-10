@@ -6,6 +6,10 @@ import static org.junit.Assert.*;
 
 public class CliTest {
 
+    private AnagramGenerator mockAnagramGenerator() {
+        return new AnagramGenerator(new String[]{"rat","tar","art"});
+    }
+
     @Test
     public void greetUser() {
         IOHelper ioHelper = new IOHelper("");
@@ -13,15 +17,6 @@ public class CliTest {
 
         cli.greetUser();
         assertEquals("Welcome to the anagram solver!\nPlease enter a word - maybe your name!\n", ioHelper.output());
-    }
-
-    @Test
-    public void takeInput() {
-        IOHelper ioHelper = new IOHelper("tar");
-        Cli cli = new Cli(ioHelper.in, ioHelper.print, mockAnagramGenerator());
-
-        String word = cli.takeInput();
-        assertEquals("tar", word);
     }
 
     @Test
@@ -34,9 +29,6 @@ public class CliTest {
         assertEquals("rat\ntar\nart\n", ioHelper.output());
     }
 
-    private AnagramGenerator mockAnagramGenerator() {
-        return new AnagramGenerator(new MockDict().getWords());
-    }
 }
 
 

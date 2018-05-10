@@ -25,15 +25,13 @@ public class Cli {
         out.println("Please enter a word - maybe your name!");
     }
 
-    public String takeInput() {
+    public void takeInput() {
         String input = scanner.next();
         this.userInput = input;
-        return input;
     }
 
     public void showResults() {
-        ArrayList<String> results = anagramGenerator.generate(userInput);
-        results
+        anagramGenerator.generate(userInput)
             .stream()
             .forEach(out::println);
     }
