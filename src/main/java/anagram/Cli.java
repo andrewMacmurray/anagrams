@@ -35,4 +35,5 @@ public class Cli {
             .stream()
             .forEach(out::println);
     }
+
 }
